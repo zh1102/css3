@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	.box{
+		width:600px;
+		height:300px;
+		border:1px solid #eee;
+		margin:50px auto;
+		position:relative;
+	}
+	.tu1{
+		width:300px;
+		height:300px;
+		background:url(1.jpg) no-repeat 0 0;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	.tu2{
+		width:300px;
+		height:300px;
+		position:absolute;
+		background:url(1.jpg) no-repeat -300px 0;
+		top:0;
+		left:300px;
+	}
+	.tu3{
+		width:300px;
+		height:300px;
+		position:absolute;
+		top:0;
+		left:300px;
+		transform-origin:left;
+	}
+	.tuz3{
+		width:300px;
+		height:300px;
+		position:absolute;
+		background:url(1.jpg) no-repeat -300px 0;
+		top:0;
+		left:0;
+		z-index:2;
+	}
+	.tuz4{
+		width:300px;
+		height:300px;
+		background:url(2.jpg) no-repeat 0 0;
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:1;
+		transform:rotateY(180deg);
+	}
+</style>
+</head>
+<body>
+<button id="btn">下一页</button>
+<div class="box" id="box">
+	<div class="tu1" id="one"></div>
+	<div class="tu2" id="two"></div>
+	<div class="tu3" id="threes">
+		<div class="tuz3" id="three"></div>
+		<div class="tuz4" id="four"></div>
+	</div>
+</div>
+<script>
+var arrImg=["1.jpg","2.jpg","3.jpg","4.jpg"];
+var Btn=document.getElementById("btn");
+var n=0;
+var imgn2=0;
+var imgn3=0;
+var timer;
+Btn.onclick=fanye;
+function fanye(){
+	Btn.onclick=null;
+	imgn3=imgn2+1;
+	if(imgn3==arrImg.length){
+		imgn3=0;
+	}
+	two.style.background="url("+arrImg[imgn3]+") no-repeat -300px 0";
+	timer=setInterval(function(){
+		n--;
+		threes.style.transform="perspective(800px) rotateY("+n+"deg)";
+		if(n==-90){
+			imgn2++;
+			if(imgn2==arrImg.length){
+				imgn2=0;
+			}
+			three.style.background="url("+arrImg[imgn2]+") no-repeat -300px 0";
+			three.style.zIndex=1;
+			four.style.zIndex=2;
+		}
+		if(n==-180){
+			clearInterval(timer);
+			three.style.zIndex=2;
+			four.style.zIndex=1;
+			if(imgn2==arrImg.length-1){
+				four.style.background="url("+arrImg[0]+") no-repeat 0 0";
+			}else{
+				four.style.background="url("+arrImg[imgn2+1]+") no-repeat 0 0";
+			}
+			one.style.background="url("+arrImg[imgn2]+") no-repeat 0 0";
+			threes.style.transform="perspective(800px) rotateY(0deg)";
+			n=0;
+			Btn.onclick=fanye;
+		}
+	},7);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bf.css"/>
+	</head>
+	<body>
+		<div id="main">
+		<audio src="music/fyjl.mp3" id="ao"></audio>
+			<div class="yyk" id="xixi">
+				<div class="jdt" id="jdt">
+					<div class="njdt" id="njdt">
+					</div>
+				</div>
+				<h1>方圆几里</h1>
+				<p>薛之谦 专辑：<span id="zj">《意外》</span></p>
+				<div id="kj">
+					<span><img src="images/suji_03.png"/></span>
+					<div class="bf">
+						<span id="prey">
+							<img src="images/play_06.jpg"/>
+						</span>
+						<span id="play">
+							▶
+						</span>
+						<span id="next">
+							<img src="images/play_09.png"/>
+						</span>
+						<div class="clear"></div>
+					</div>
+					<div class="lb">
+						<div class="ylt">
+							<div class="nylt">
+								<div class="yiqiu"></div>
+							</div>							
+						</div>
+						<img src="images/jp_11.jpg"/>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//获取音频元素
+		var auDio=document.getElementById('ao')
+		//获取播放键元素
+		var pLay=document.getElementById('play');
+		pLay.onmousedown=function(){
+			return false;
+		}
+		pLay.onclick=function(){
+			if(pLay.innerHTML=='||'){
+				auDio.pause();
+				pLay.innerHTML='▶';
+			}else{
+				auDio.play()
+				pLay.innerHTML='||';
+			}		
+		}
+		var arrN=0;
+		//存放音乐数组
+		var musicArr=['music/fyjl.mp3','music/ss.mp3','music/xyl.mp3'];
+		//创建歌曲信息保存对象里
+		var musicData=[{
+			'img':'images/yiwai.jpg',
+			'name':'方圆几里',
+			'data':'《意外》'
+		},
+		{
+			'img':'images/shsh.jpg',
+			'name':'绅士',
+			'data':'《绅士》'
+		},
+		{
+			'img':'images/shenshi.jpg',
+			'name':'下雨了',
+			'data':'《绅士》'
+		}]
+		var xiX=document.getElementById('xixi')
+		//上一首元素
+		var Prey=document.getElementById('prey')
+		//获取下一首元素
+		var Next=document.getElementById('next')
+		var _h=xiX.getElementsByTagName('h1')[0];
+		var _sp=document.getElementById('zj')
+		//上一首
+		Prey.onclick=function(){
+			arrN--;
+			if(arrN==-1){
+				arrN=musicArr.length-1;
+			}
+			pLay.innerHTML='||';
+			nJdt.style.width=0;
+			//添加下标对应的音乐文件
+			auDio.src=musicArr[arrN];
+			//播放
+			auDio.play();
+			//更改歌曲信息		
+			_h.innerHTML=musicData[arrN].name;
+			_sp.innerHTML=musicData[arrN].data;
+			main.style.background='url('+musicData[arrN].img+')';
+		}
+		//下一首
+		Next.onclick=function(){
+			arrN++;
+			if(arrN==musicArr.length){
+				arrN=0;
+			}
+			pLay.innerHTML='||';
+			//添加下标对应的音乐文件
+			auDio.src=musicArr[arrN];
+			//播放
+			auDio.play();
+			//更改歌曲信息		
+			_h.innerHTML=musicData[arrN].name;
+			_sp.innerHTML=musicData[arrN].data;
+			main.style.background='url('+musicData[arrN].img+')';
+		}
+		//进度条跟随
+		console.log(auDio.currentTime)
+		var nJdt=document.getElementById('njdt')
+		auDio.addEventListener('timeupdate',function(){
+			var maxNumWidth=auDio.currentTime/auDio.duration*100
+			//console.log(auDio.currentTime)
+			nJdt.style.width = (auDio.currentTime/auDio.duration*100)+'%';
+		},false)
+		//点击进度条所到位置
+		
+		var _jdt=document.getElementById('jdt');
+		_jdt.onclick=function(e){
+			var ev=e||event;
+			var numX=(ev.clientX-main.offsetLeft)/this.offsetWidth*100;		
+			nJdt.style.width=numX+'%';
+			auDio.currentTime=auDio.duration*((ev.clientX-main.offsetLeft)/this.offsetWidth);			
+			if(pLay.innerHTML =='||'){
+				auDio.play();
+			}else{
+			}
+		}
+		//
+		//音乐播放结束
+		auDio.addEventListener('ended',function(){
+			nJdt.style.width=0;
+			pLay.innerHTML='▶';
+		},false)
+		
+		//音量（没做）
+		var bool=true;
+		kj.children[2].children[1].onclick=function(){
+			if(bool){
+				bool=false;
+				kj.children[2].children[0].style.display='block'
+			}else{
+				bool=true;
+				kj.children[2].children[0].style.display='none'
+			}		
+		}
+		var ylQiu=document.querySelector('.yiqiu');
+		var nLyt=document.querySelector('.nylt');
+		ylQiu.onmousedown=function(e){
+			var ev=e||event;
+			var boTomNum=ev.clientY-this.offsetTop;
+			document.onmousemove=function(e){
+				var ev=e||event;
+				var needTop=ev.clientY-boTomNum;
+				var maxT = nLyt.offsetHeight - ylQiu.offsetHeight;
+				if(needTop<0){
+					needTop=0;
+				}
+				if(needTop>maxT){
+					needTop=maxT;
+				}
+				var numH=(80-ylQiu.offsetHeight-needTop);
+				auDio.volume=numH/maxT;
+				console.log(numH/maxT)
+				ylQiu.style.bottom=numH+'px';
+			};
+			document.onmouseup = function(){
+				document.onmousemove = document.onmouseup = null;
+			};
+				return false;
+		}
+	</script>
+</html>

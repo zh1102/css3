@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{margin:0;padding:0;}
+			.jiaomian{
+				width:200px;
+				height:100px;
+				background:#008000;
+				position: absolute;
+				left:50%;
+				top:50%;
+				margin:-75px 0 0 -150px;
+				transform-style: preserve-3d;				
+				transform: perspective(800px) rotateY(-403deg);
+				background:rgba(0,128,0,0)
+			}
+			.jiaomian div{
+				height:98px;
+				border:0px;
+				position: absolute;
+			}
+			
+			.nj1{
+				width:200px;
+				background:#6A6A87;
+				height: 110px!important;
+    transform-origin: bottom center;
+    transform: rotateX(27deg) translateZ(50px) translateY(12px);
+			}
+			.nj2{
+				background:#0000FF;
+				width:200px;
+				height: 110px!important;
+    transform-origin: bottom center;
+    transform: rotateX(-27deg) translateZ(-50px) translateY(12px);
+			}
+			.nj5{
+				background:#999;
+				width:200px;
+				transform: rotateX(90deg) translateZ(-48px);
+    height: 100px!important
+			}
+			.nj3{
+				background:yellow;
+				width:100px;
+				transform:rotatey(90deg) translateZ(150px);
+				-webkit-clip-path: polygon(50% 0,100% 100%,0 100%);
+			}
+			.nj4{
+				background:red;
+				width:100px;
+				transform:rotatey(-90deg) translateZ(50px);
+				-webkit-clip-path: polygon(50% 0,100% 100%,0 100%);
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="jiaomian" id="div">
+			<div class="nj1"></div>
+			<div class="nj2"></div>
+			<div class="nj5"></div>
+			<div class="nj3"></div>
+			<div class="nj4"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var a=0;
+			var div=document.getElementById('div')
+			timer=setInterval(function(){
+				a+=0.3;
+				div.style.transform='perspective(800px) rotateY('+a+'deg) rotateX('+a+'deg)' ;
+			},10)
+	</script>
+</html>

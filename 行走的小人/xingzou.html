@@ -1,0 +1,104 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+*{margin: 0;padding:0;list-style: none;}
+body{
+}
+canvas{
+	background: white;
+	position: absolute;
+	
+}
+button{
+	top:0;
+}
+    </style>
+</head>
+<body>
+	<button id="shang">上</button>
+	<button id="xia">下</button>
+	<button id="zuo">左</button>
+	<button id="you">右</button>
+<canvas id='canvas' width=1200 height=1200>
+	
+	您的浏览器版本太低了,请您赶紧升级
+</canvas>
+<script type="text/javascript">
+
+	od = canvas.getContext('2d');
+	var img = new Image();
+	img.src = 'player.png';
+	img.onload = function(){
+		var i = 0;
+		var x = 200;
+		var y = 200;
+		var time;
+		zuo.onclick=function(){
+			clearInterval(time)
+			time=setInterval(function(){
+				i++;
+				x-=5;
+				if(i==4)i=0;
+				od.clearRect(0,0,canvas.width,canvas.height);
+				od.drawImage(
+					img,i*84,146,84,114,
+					x,y,84,114
+				);
+			},100);
+		}
+		you.onclick=function(){
+			clearInterval(time)
+			time=setInterval(function(){
+				i++;
+				x+=5;
+				console.log(y)
+				if(i==4)i=0;
+				od.clearRect(0,0,canvas.width,canvas.height);
+				od.drawImage(
+					img,i*84,280,84,114,
+					x,y,84,114
+				);
+			},100)
+		}
+		shang.onclick=function(){
+			clearInterval(time)
+			time=setInterval(function(){
+				i++;
+				y-=5;
+				if(i==4)i=0;
+				od.clearRect(0,0,canvas.width,canvas.height);
+				od.drawImage(
+					img,i*84,398,84,114,
+					x,y,84,114
+				);
+			},100);
+		}
+		xia.onclick=function(){
+			clearInterval(time)
+			time=setInterval(function(){
+				i++;
+				y+=5;
+				console.log(y)
+				if(i==4)i=0;
+				od.clearRect(0,0,canvas.width,canvas.height);
+				od.drawImage(
+					img,i*84,0,84,114,
+					x,y,84,114
+				);
+			},100);
+		}
+
+
+	};
+	/*
+	img.onerror = function(){
+		alert(2);
+	}
+	*/
+
+</script>
+</body>
+</html>

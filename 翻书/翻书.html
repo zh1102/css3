@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#book{
+				width:300px;
+				height:428px;
+				position: absolute;
+				left:50%;
+				top:50%;
+				background:rgba(0,0,0,0);
+				margin:-214px 0 0 -150px;
+				transform:perspective(800px);
+				transform-style:preserve-3d;
+			}
+			.ye{
+				width:299px;height:100%;position: absolute;left:0;top:0;
+				border-right:1px solid #333;
+				background: #999;
+				transform-origin: left;
+				
+				
+			}
+			.yem{
+				width:300px;height:100%;position: absolute;left:0;top:0;
+				background: url(zheng.jpg) no-repeat;
+				transform:translateZ(23px);
+				transform-origin: left;
+				
+			}
+			.yemxia{
+				width:300px;height:100%;position: absolute;left:0;top:0;
+				background: url(fan.jpg) no-repeat;
+				transform:translateZ(-23px);
+				
+			}
+			#bookzhou{
+				width:46px;
+				display: block;
+				height:100%;
+				background:url(zhou.jpg);
+				transform: rotateY(90deg) translateZ(-23px);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ip">
+			<button>转</button>
+			<button>打开</button>
+			<button>下一页</button>
+		</div>
+		<div id="book">
+			<span id="bookzhou"></span>
+			<span class="yem"></span>
+			<span class="yemxia"></span>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		for(var i=0;i<22;i++){
+			var div=document.createElement("div");
+			div.style.transform='translateZ('+i+'px)';
+			div.className='ye';
+			book.appendChild(div)
+		}
+		//下面
+		for(var i=0;i<22;i++){
+			var div=document.createElement("div");
+			div.style.transform='translateZ('+(-i)+'px)';
+			div.className='ye';
+			book.appendChild(div);
+		} 
+		var bool=true;
+		var fm=book.querySelector('.yem');
+		var hm=book.querySelector('.yemxia');
+		var allye=book.getElementsByTagName('div');
+		ip.children[0].onclick=function(){
+			if(bool){				
+				book.style.transform='perspective(800px) rotateY(-180deg)';
+				book.style.transition='1s all ease';
+				bool=false;
+			}else{
+				book.style.transform='perspective(800px) rotateY(0deg)';
+				book.style.transition='1s all ease';
+				bool=true;
+			}
+		}
+		ip.children[1].onclick=function(){
+			if(n==0){
+				fm.style.transform='rotateY(-160deg)';
+				fm.style.transition='1s all ease';
+				n++;
+			}
+			
+		}
+		var n=0;
+		var num=2;
+		var jd=-160
+		ip.children[2].onclick=function(){
+			if(n>0){
+				if(n==allye.length){
+				return false;	
+			}
+			allye[n].style.transition='1s all ease';
+			allye[n].style.transform='rotateY('+jd+'deg) translateZ('+(-num)+'px)'	
+			n++;
+			num++;
+			jd++;
+			}else{
+				return false;
+			}
+			
+		}
+//			var a=0;
+//				timer=setInterval(function(){
+//				a+=0.6;
+//				book.style.transform='perspective(800px) rotateY('+a+'deg)';
+//			},10)
+	</script>
+</html>

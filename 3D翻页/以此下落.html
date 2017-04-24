@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin:0;padding:0}
+			.red{
+				width:65px;
+				height:65px;
+				float: left;
+				background:red;
+				position: absolute;
+				top:0;
+				transition: 0.8s all ease;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+		for(var i=0;i<20;i++){
+				var odiv=document.createElement("div");
+				document.body.appendChild(odiv)
+				odiv.className='red';
+				odiv.style.left=i*70+'px';
+			}
+		
+		var box=document.getElementsByTagName('div');
+		var n=0;
+		var H=innerHeight - box[0].offsetHeight;
+		var timer;
+		var topNum=0;
+		var bool=true;
+		var bool2=false;
+		document.onclick=function(){
+			if(bool2){}
+			timer=setInterval(function(){
+				//console.log(n)
+			if(n==box.length){
+				n=0;
+				clearInterval(timer)
+			}
+			box[n].style.top=H+'px';
+			n++;
+			},50)			
+		}
+			
+		</script>
+	</body>
+</html>

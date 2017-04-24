@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{margin:0;padding:0;}
+			.mian{
+				width:200px;
+				height:200px;
+				background:rgba(0,0,0,0);
+				position:absolute;
+				left:0;top:0;right:0;bottom:0;
+				margin:auto;
+				transform-style: preserve-3d;
+			}
+			.mian div{ 
+				width:200px;
+		 		position: absolute;
+				left:0;top:0;right:0;bottom:0;
+				margin:auto;
+			}
+			.mian .mian1{
+				height: 200px;
+				background:#717107;
+				transform: translateZ(10px);
+			}
+			.mian .mian2{
+				height:200px;
+				background:#999;
+				transform:translateZ(-10px);
+			}
+			.bian1{
+				height:20px;
+				background:#A54F4F;
+				transform:rotateX(-90deg)
+				translateZ(100px);				
+			}
+			.bian2{
+				height:20px;
+				background:#A54F4F;
+				transform:rotateX(-90deg)
+				translateZ(-100px);	
+			}
+			.bian4{
+				height:20px;
+				background:#A54F4F;
+				transform:rotateX(90deg) rotateY(-90deg) translateZ(100px);	
+
+			}
+			.bian3{
+				height:20px;
+				background:#A54F4F;
+				transform:rotateX(90deg) rotateY(-90deg) translateZ(-100px);
+			}
+			.tui{
+				height:20px;
+				background:rgba(0,0,0,0);
+				transform-style: preserve-3d;
+				transform:translateX(90px) translateY(90px) translateZ(110px) rotateY(90deg);						
+			}
+			.tui1{
+				height:20px;
+				background:#00FF00;
+				transform:translateZ(10px);
+				
+			}
+			.tui2{
+				height:20px;
+				background:red;
+				transform:translateZ(-10px);
+			}
+			
+			.tui3{
+				height:20px;
+				background:#3B3B39;
+				transform:translateY(10px) rotateX(90deg);
+			}
+			.tui4{
+				height:20px;
+				background:yellowgreen;
+				transform:translateY(-10px) rotateX(90deg);
+			}
+			.tui5{
+				width:20px!important;
+				height:20px;
+				background:lightskyblue;
+				transform:translateX(-100px) rotateY(90deg);
+			}
+			.two{
+				height:20px;
+				background:rgba(0,0,0,0);
+				transform-style: preserve-3d;
+				transform:translateX(-90px) translateY(90px) translateZ(110px) rotateY(90deg) rotateX(180deg);	
+			}
+			.three{
+				height:20px;
+				background:rgba(0,0,0,0);
+				transform-style: preserve-3d;
+				transform:translateX(90px) translateY(-90px) translateZ(110px) rotateY(90deg);	
+			}
+			.four{
+				height:20px;
+				background:rgba(0,0,0,0);
+				transform-style: preserve-3d;
+				transform:translateX(-90px) translateY(-90px) translateZ(110px) rotateY(90deg) rotateX(180deg);	
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mian" id="div">
+			<div class="mian1"></div>
+			<div class="mian2"></div>
+			<div class="bian1"></div>
+			<div class="bian2"></div>
+			<div class="bian3"></div>
+			<div class="bian4"></div>
+			<div class="tui">
+				<div class="tui1"></div>
+				<div class="tui2"></div>
+				<div class="tui3"></div>
+				<div class="tui4"></div>
+				<div class="tui5"></div>
+			</div>
+			<div class="tui two">
+				<div class="tui1"></div>
+				<div class="tui2"></div>
+				<div class="tui3"></div>
+				<div class="tui4"></div>
+				<div class="tui5"></div>
+			</div>
+			<div class="tui three">
+				<div class="tui1"></div>
+				<div class="tui2"></div>
+				<div class="tui3"></div>
+				<div class="tui4"></div>
+				<div class="tui5"></div>
+			</div>
+			<div class="tui four">
+				<div class="tui1"></div>
+				<div class="tui2"></div>
+				<div class="tui3"></div>
+				<div class="tui4"></div>
+				<div class="tui5"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+			var div=document.getElementById('div')	
+			var a=0;
+			setInterval(function(){
+				a+=0.5;
+				div.style.transform='perspective(800px) rotateY('+a+'deg) rotateX('+a+'deg)' ;
+			},10)			
+	</script>
+</html>
